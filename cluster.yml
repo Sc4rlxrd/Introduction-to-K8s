@@ -1,0 +1,11 @@
+
+#  kind: seria o objeto que vai ser criado no meu caso um Cluster
+# apiVersion : o proprio nome já fala a versão usada
+# nodes : seria os nó de trabalhos 
+# role de control-plane : seria o adm dos nodes e role de worker seria de trabalho
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
