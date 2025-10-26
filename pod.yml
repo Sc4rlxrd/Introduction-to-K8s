@@ -1,0 +1,10 @@
+# obs: como eu não especifique qual worker ele vai mandar no aleatório
+# adicionar essas flags( -o wide ) no final do comando kubectl get pods ele vai mostrar mais informação 
+apiVersion: v1
+kind: Pod  # qual objeto ou recurso que vai criar 
+metadata:
+  name: myapp  # essa parte seria o nome do pod para poder diferenciar dos outros pods claro que pode ter outros metadados 
+spec:  # seria características dos containers que vão ser criados como nome, images e futuramente volemes e env  
+  containers:
+  - name: myapp-containers
+    image: nginx
