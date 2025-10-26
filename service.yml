@@ -1,0 +1,15 @@
+# Por enquanto, só funciona o curl dentro de algum pod do cluster. No navegador ainda não funciona.
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mybookdeploy
+  name: mybookdeploy
+spec:
+  ports:
+  - port: 8080 # porta http 
+    protocol: TCP  # sempre usar declarar em  caixar alta
+    targetPort: 80 # seria porta do serviço do conteirner no meu caso o ngnix roda na porta 80 por deafult
+  selector:
+    app: mybookdeploy
+  type: ClusterIP
