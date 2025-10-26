@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mybookdeploy
+  labels: 
+   app: mybookdeploy
+spec:
+  replicas: 3  # Garante 3 réplicas do Pod
+  selector:   # O seletor que aponta para os Pods gerenciados por este Deployment
+    matchLabels:
+     app: mybookdeploy
+  template:
+    metadata:  #  devem corresponder exatamente a spec.selector.matchLabels. Estes labels (rótulos) DEVEM ser uma chave/valor (app: mybookdeploy)
+      labels: 
+        app: mybookdeploy
+    spec:
+      containers:
+      - name: book-service
+        image: nginx
