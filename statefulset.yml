@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: StatefulSet  # ele funcionar da mesma forma que o serviço Deployment a única diferença que ele não cria um id novo toda vez que o pod morre 
+metadata: 
+  name: mybookstatefulset
+  labels: 
+   app: mybookstatefulset
+spec:
+  replicas: 2  
+  selector:  
+    matchLabels:
+      app: mybookstatefulset
+  template:
+    metadata:  
+      labels: 
+        app: mybookstatefulset
+    spec:
+      containers:
+      - name: book-service
+        image: nginx
