@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: 
+  name: bookdb
+  labels: 
+   app: bookdb
+spec:
+  replicas: 1
+  selector:  
+    matchLabels:
+     app: bookdb
+  template:
+    metadata:  
+      labels: 
+        app: bookdb
+    spec:
+      containers:
+      - name: book-service-db
+        image: postgres:15
+        env:
+         - name:  POSTGRES_USER
+           value: postgres
+         - name: POSTGRES_PASSWORD
+           value: root
+         - name: POSTGRES_DB
+           value: bookdb
+
+
+
+# como acessar via terminal: kubectl exec -it nome do pod -- bash 
+# para acessar qualquer log executar esse comando aqui : kubectl logs -f nome do pod
+# alguns comandos para usar no cli do psql 
+
+# \q   Sai (quit) do console interativo do psql.
+# \l   Lista todos os BANCOS DE DADOS no servidor.
+
+#  LISTAR OBJETOS DO BANCO DE DADOS (DENTRO DE UM BANCO) 
+# \d       Lista todas as "relações" (tabelas, views, sequences) no schema atual.
+# \dt      Lista apenas TABELAS no schema atual.
+# \dt+     Lista TABELAS com mais detalhes (incluindo tamanho em disco).
+# \dv      Lista VIEWS (Visões).
+# \ds      Lista SEQUENCES (Sequências).
+# \di      Lista ÍNDICES.
+# \dn      Lista SCHEMAS (Esquemas).
+# \df      Lista FUNÇÕES e AGREGADOS.
+# \du      Lista USUÁRIOS (Roles/Funções) e seus privilégios.
+
+#  INSPECIONAR OBJETOS 
+# \d [nome_da_tabela]   Descreve a estrutura de uma TABELA (colunas, tipos de dados, índices).
+# \d+ [nome_da_tabela]  Descreve a TABELA com detalhes adicionais (tamanho, descrição).
+
+
+#   FERRAMENTAS E SAÍDA 
+# \i [nome_do_arquivo]  Executa comandos SQL a partir de um arquivo (ex: \i script.sql).
+# \o [nome_do_arquivo]  Redireciona a saída dos próximos comandos para um arquivo.
+# \x   Liga/Desliga o modo de exibição expandida (útil para tabelas com muitas colunas).
