@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mybookdeployconfigmap
+  labels: 
+   app: mybookdeployconfigmap
+spec:
+  replicas: 3  
+  selector:   
+    matchLabels:
+     app: mybookdeployconfigmap
+  template:
+    metadata: 
+      labels: 
+        app: mybookdeployconfigmap
+    spec:
+      containers:
+      - name: book-service-frontend
+        image: nginx
+        volumeMounts:
+         - name: volume-index  
+           mountPath: /usr/share/nginx/html  # local onde o arquivo copiado vai ser mandado
+           readOnly: true  # somente leitura sem modificar o arquivo no cluster todo
+      volumes:
+       - name: volume-index     # nome do meu volume nesse serviço
+         configMap:
+          name: myindex  #  nome do config map criado na linha de comando 
+        
+# config map sempre deve ser "montado" como volume porque estou modificando um arquivo que ja existe.
+# comando para criar um config map : kubectl create configmap myindex --from-file index.html
+# como nesse exemplo estou usando o nginx ele so mostra páginas html estático

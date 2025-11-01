@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - ConfigMap Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background: linear-gradient(
+                45deg,
+                #00FFFF, /* cyan */
+            );
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #ffffff; /* Texto branco padrão */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente para o texto */
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 80%;
+            border: 2px solid #00FFFF; /* cyan bright */
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #03b8ff; /* bright-green */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #FFD700; /* bright-yellow (ouro) */
+        }
+
+        .color-palette {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo ao Book Service!</h1>
+        <p>Esta é uma aplicação de demonstração com ConfigMaps.</p>
+        <p class="version">Versão do Serviço: <span id="serviceVersion">1.0</span></p>
+        <p style="margin-top: 30px; font-size: 0.9em; color: rgba(255, 255, 255, 0.7);">
+            Para alterar o conteúdo, modifique o ConfigMap referenciado.
+        </p>
+    </div>
+</body>
+</html>
