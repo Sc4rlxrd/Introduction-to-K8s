@@ -26,7 +26,6 @@ spec:
            value: bookdb
 
 
-
 # como acessar via terminal: kubectl exec -it nome do pod -- bash 
 # para acessar qualquer log executar esse comando aqui : kubectl logs -f nome do pod
 # alguns comandos para usar no cli do psql 
