@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: bookdb
+  labels: 
+   app: bookdb
+spec:
+  replicas: 1
+  selector:  
+    matchLabels:
+     app: bookdb
+  template:
+    metadata:  
+      labels: 
+        app: bookdb
+    spec:
+      containers:
+      - name: book-service-db
+        image: mysql

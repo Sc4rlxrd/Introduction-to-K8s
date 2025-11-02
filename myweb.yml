@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: wordpress
+  labels: 
+   app: wordpress
+spec:
+  replicas: 1
+  selector:  
+    matchLabels:
+     app: wordpress
+  template:
+    metadata:  
+      labels: 
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress
+
+# uma forma de criar um service via terminal: kubectl expose deployment bookdb(nome do pod) --port=3306(porta de entrada) --target-port=3306(porta do container) --protocol=TCP   
+# exemplo:  kubectl expose deployment wordpress --port=8080 --target-port=80 --protocol=TCP 
