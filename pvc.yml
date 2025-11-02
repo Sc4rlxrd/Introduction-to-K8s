@@ -1,0 +1,12 @@
+apiVersion: v1   # OBS PRIMEIRO CRIAR O PV antes de criar o pvc 
+kind: PersistentVolumeClaim
+metadata: 
+  name: my-nfs-claim
+spec:
+  volume: my-nfs-volume  # nome do serviço pv 
+  storageClassName: ""
+  accessModes:
+    - ReadWriteMany   # obs tem que ser o mesmo do pv 
+  resources:
+    requests:
+      storage: 1Gi  # obs tem que ter o mesmo valor declarado no pv 
