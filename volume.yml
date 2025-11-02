@@ -1,0 +1,22 @@
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: nfs-example 
+spec: 
+  containers:
+   - name: busybox
+     image: busybox
+     comnand: ['sh', '-c', 'sleep 3600']
+     volumeMounts:
+       - mountPath: /host
+         name: nfs-volume
+  securityContext:
+    privileged: true
+    runAsUser: 0
+    capabilities:
+      add: ["SYS_ADMIN", "DAC_READ_SEARCH"]
+  volumes:
+   - name: nfs-volume
+     nfs:
+      server: 192.168.1.20
+      path: /storage
