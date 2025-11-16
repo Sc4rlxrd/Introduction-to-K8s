@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: simple-job  # nome do serviço
+spec:
+  backoffLimit: 5  # número de tentativas em caso de falha  
+  parallelism: 4  # número de pods a serem executados em paralelo
+  completions: 5  # número total de pods a serem completados
+  template:
+    spec:
+      containers:
+      - name: simple-job-container
+        image: busybox
+        command: ["sh", "-c", "echo Hello, Kubernetes! && sleep 05"]
+      restartPolicy: Never  # política de reinício dos pods
