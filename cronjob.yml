@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: simple-cronjob  
+spec:
+# o cornjob aceita estas mesmas propriedades de um job normal (backoffLimit,parallelism,completions,etc)
+  schedule: "*/1 * * * *"  # schedule e uma interface cron padrão do linux 
+  successfulJobsHistoryLimit: 3  # número de jobs bem-sucedidos a serem mantidos no histórico
+  failedJobsHistoryLimit: 1  # número de jobs com falha a serem mantidos no histórico
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: simple-job-container
+            image: busybox
+            command: ["sh", "-c", "echo Hello, Kubernetes! && sleep 05"]
+          restartPolicy: Never  # política de reinício dos pods
